@@ -1,0 +1,56 @@
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Spring Web MVC Application</display-name>
+
+	<!--  
+	The DispatcherServlet name “mvc-dispatcher“, is used to defined which file to load the Spring MVC configurations. By default, it will look for file by joining the servlet name “mvc-dispatcher” with “-servlet.xml” as the file name, in this case, it will find the “mvc-dispatcher-servlet.xml” file and load the Spring MVC configuration.
+Alternatively, you can explicitly specify the Spring configuration file in the “contextConfigLocation” servlet parameter, to ask Spring to load your configurations besides the default “mvc-dispatcher-servlet.xml“.
+	
+	
+	//web application context
+	
+	<servlet>
+      <servlet-name>platform-services</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:platform-services-servlet.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+</servlet>
+	
+// application context
+	<listener>
+     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<context-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>classpath:*-context.xml</param-value>
+</context-param>
+	-->
+	
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+</web-app>
